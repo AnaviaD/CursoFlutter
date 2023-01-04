@@ -3,25 +3,36 @@
 // ====================================================================================
 
 void main(){
-
-  final wolverine1 = new Heroe();
-  wolverine1.nombre = 'Logan';
-  wolverine1.poder = 'Regeneracion';
   
-  print(wolverine1);  
+  final rawJson = {
+    'nombre'    : 'Tony Stark',
+    'poder'     : 'Dinero'
+  };
+  
+final ironman = new Heroe(nombre: rawJson['nombre']!, poder: rawJson['poder']!);
+//   wolverine1.nombre = 'Logan';
+//   wolverine1.poder = 'Regeneracion';
+  
+//   print(wolverine1);  
+  print (ironman);
 }
 
 
 class Heroe{
-  String? nombre;
-  String? poder;
+  String nombre;
+  String poder;
   
+  Heroe({
+    required this.nombre,
+    required this.poder
+  });
+//   Heroe(this.nombre, this.poder);
+
   @override
   String toString(){
     return 'Heroe nombre: ${this.nombre}, poder: ${this.poder}';
   }
 }
-
 
 // ====================================================================================
 // =================================== Primer Codigo ==================================
@@ -33,20 +44,35 @@ class Heroe{
 
 
 void main(){
-
-  final wolverine1 = new Heroe( 'Logan', 'Regeneracion');
+  
+  final rawJson = {
+    'nombre'    : 'Tony Stark',
+    'poder'     : 'Dinero'
+  };
+  
+final ironman = new Heroe(nombre: rawJson['nombre']!, poder: rawJson['poder']!);
 //   wolverine1.nombre = 'Logan';
 //   wolverine1.poder = 'Regeneracion';
   
-  print(wolverine1);  
+//   print(wolverine1);  
+  print (ironman);
 }
 
 
 class Heroe{
-  String nombre;
-  String poder;
+  String? nombre;
+  String? poder;
   
-  Heroe(this.nombre, this.poder);
+  Heroe({
+    required this.nombre,
+    required this.poder
+  });
+  
+  Heroe.fromJson(Map<String, String> json ){
+    this.nombre = json['nombre']!;
+    this.poder = json['poder']!;
+  }
+//   Heroe(this.nombre, this.poder);
 
   @override
   String toString(){
@@ -61,13 +87,23 @@ class Heroe{
 // ====================================================================================
 // =================================== Ultimo Codigo ==================================
 // ====================================================================================
-void main(){
+// Este codigo toma los valores directamente de el Json
 
-  final wolverine1 = new Heroe(nombre: 'Logan', poder: 'Regeneracion');
+void main(){
+  
+  final rawJson = {
+    'nombre'    : 'Tony Stark',
+    'poder'     : 'Dinero'
+  };
+  
+  final ironman = Heroe.fromJson(rawJson);
+  
+// final ironman = new Heroe(nombre: rawJson['nombre']!, poder: rawJson['poder']!);
 //   wolverine1.nombre = 'Logan';
 //   wolverine1.poder = 'Regeneracion';
   
-  print(wolverine1);  
+//   print(wolverine1);  
+  print (ironman);
 }
 
 
@@ -79,7 +115,10 @@ class Heroe{
     required this.nombre,
     required this.poder
   });
-//   Heroe(this.nombre, this.poder);
+  
+  Heroe.fromJson(Map<String, String> json ):
+    this.nombre = json['nombre']!,
+    this.poder = json['poder'] ?? 'No tiene poder';
 
   @override
   String toString(){
