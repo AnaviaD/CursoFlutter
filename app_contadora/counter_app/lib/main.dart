@@ -1,3 +1,4 @@
+import 'package:counter_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -5,6 +6,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  // Paara este widget como el nombre de la extencion lo dice
+  // Va a ser estatico o constante por eso en casi todos los puntos de el codigo
+  // lo menciona 'const'
   // Este es el constructor
   const MyApp({super.key});
   // Este es el constructor
@@ -12,8 +16,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        home: Center(
-      child: Text('Hola Mundo'),
-    ));
+        debugShowCheckedModeBanner: false, home: HomeScreen());
   }
 }
